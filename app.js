@@ -4,6 +4,12 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+//it makes mongoose required 
+var mongoose = require('mongoose');
+
+//it takes configurations
+var configs = require('./configs/globals');
+
 var indexRouter = require('./routes/index');
 var contactsRouter = require('./routes/api/contacts');
 
@@ -21,6 +27,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/api/contacts', contactsRouter);
+
+mongoose.connect(configs.db).then(function(message){
+  console.log("DB connected")
+}).catch(function(error){
+  console.log(error)
+})
 
 
 // catch 404 and forward to error handler
