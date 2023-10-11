@@ -28,6 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/api/contacts', contactsRouter);
 
+//Here it will connect to mongodb using mongoose
 mongoose.connect(configs.db).then(function(message){
   console.log("DB connected")
 }).catch(function(error){
