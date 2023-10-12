@@ -7,9 +7,6 @@ var logger = require('morgan');
 //it makes mongoose required 
 var mongoose = require('mongoose');
 
-//it takes configurations
-var configs = require('./configs/globals');
-
 var indexRouter = require('./routes/index');
 var contactsRouter = require('./routes/api/contacts');
 
@@ -29,7 +26,7 @@ app.use('/', indexRouter);
 app.use('/api/contacts', contactsRouter);
 
 //Here it will connect to mongodb using mongoose
-mongoose.connect(configs.db).then(function(message){
+mongoose.connect(process.env.DB).then(function(message){
   console.log("DB connected")
 }).catch(function(error){
   console.log(error)
